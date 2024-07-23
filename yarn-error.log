@@ -1,0 +1,67 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\PC\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js
+
+PATH: 
+  C:\Users\PC\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\PC\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\xampp\php;C:\Program Files (x86)\NetSarang\Xshell 7;C:\ProgramData\ComposerSetup\bin;C:\Program Files (x86)\Bitvise SSH Client;C:\Users\PC\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\xampp\mysql\bin;C:\Program Files\Docker\Docker\resources\bin;C:\Program Files\dotnet;C:\Users\PC\AppData\Local\Microsoft\WindowsApps;C:\Users\PC\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\PC\AppData\Local\GitHubDesktop\bin;C:\Users\PC\AppData\Roaming\Composer\vendor\bin;C:\Users\PC\AppData\Roaming\npm;C:\Users\PC\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.18.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: EPERM: operation not permitted, unlink 'D:\vue-base\node_modules\@esbuild\win32-x64\esbuild.exe'
+
+npm manifest: 
+  {
+    "name": "base",
+    "private": true,
+    "version": "0.0.1",
+    "type": "module",
+    "scripts": {
+      "dev": "vite",
+      "build": "vue-tsc && vite build",
+      "preview": "vite preview"
+    },
+    "dependencies": {
+      "@vuepic/vue-datepicker": "^5.3.0",
+      "@vueuse/components": "^10.2.0",
+      "@vueuse/core": "^10.2.0",
+      "@vueuse/router": "^10.2.0",
+      "axios": "^1.4.0",
+      "dayjs": "^1.11.8",
+      "nprogress": "^0.2.0",
+      "pinia": "^2.1.4",
+      "pinia-plugin-persistedstate": "^3.1.0",
+      "ramda": "^0.29.0",
+      "sass": "^1.63.4",
+      "vee-validate": "^4.9.6",
+      "vue": "^3.2.47",
+      "vue-inline-svg": "^3.1.2",
+      "vue-router": "^4.2.2",
+      "yup": "^1.2.0"
+    },
+    "devDependencies": {
+      "@types/node": "^20.3.1",
+      "@types/nprogress": "^0.2.0",
+      "@types/ramda": "^0.29.2",
+      "@vitejs/plugin-vue": "^4.1.0",
+      "autoprefixer": "^10.4.14",
+      "postcss": "^8.4.24",
+      "tailwindcss": "^3.3.2",
+      "typescript": "^5.0.2",
+      "vite": "^4.3.9",
+      "vue-toastification": "^2.0.0-rc.5",
+      "vue-tsc": "^1.4.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
