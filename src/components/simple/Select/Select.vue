@@ -22,6 +22,7 @@ const props = withDefaults(
     customLabel?: Function;
     disabled?: boolean;
     maxLength?: number;
+    placeholderSearch?: string;
   }>(),
   {
     allowEmpty: true,
@@ -34,6 +35,7 @@ const props = withDefaults(
     contentClasses: "max-h-[300px]",
     showSearch: true,
     maxLength: 100,
+    placeholderSearch: "Type to search ...",
   }
 );
 
@@ -270,7 +272,7 @@ const searchFocus = () => {
               id="select_search"
               class="pr-8 text-sm"
               type="text"
-              placeholder="Type to search ..."
+              :placeholder="placeholderSearch"
               v-model="keyword"
             >
               <template #append v-if="keyword">
@@ -297,15 +299,24 @@ const searchFocus = () => {
               "
               :key="index"
               class="text-sm flex items-center gap-1"
-              :class="{ 'text-blue-600': checkActiveOption(option) }"
+              :class="{ '!text-blue-600': checkActiveOption(option) }"
             >
               <div
+                class="flex-1"
                 v-html="
                   customLabel ? customLabel(option) : buildOptionName(option)
                 "
               ></div>
-              <div v-if="isMultiple && checkActiveOption(option)">
+              <div
+                v-if="checkActiveOption(option)"
+                class="flex gap-1 justify-end"
+                :class="{
+                  'flex-[0_0_40px]': isMultiple,
+                  'flex-[0_0_20px]': !isMultiple,
+                }"
+              >
                 <s-icon
+                  v-if="isMultiple"
                   @click.stop="
                     selectOption(option);
                     onClose();
@@ -314,6 +325,17 @@ const searchFocus = () => {
                   height="16"
                   class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
                   :src="$icon.render('iconClose')"
+                ></s-icon>
+
+                <s-icon
+                  @click.stop="
+                    selectOption(option);
+                    onClose();
+                  "
+                  width="16"
+                  height="16"
+                  class="!text-green-600 svg-line"
+                  :src="$icon.render('iconCheckLine')"
                 ></s-icon>
               </div>
             </SelectItem>

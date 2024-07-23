@@ -121,47 +121,49 @@ const week = ref("2023-W31");
     <s-input type="month" v-model="month"></s-input>
     <s-input type="week" v-model="week"></s-input>
 
-    <div class="inline-block">
-      <s-tooltip>
-        <template #content> Lorem ipsum dolor? </template>
-        <s-button>Top</s-button>
-      </s-tooltip>
-    </div>
+    <div class="flex gap-3">
+      <div class="inline-block">
+        <s-tooltip>
+          <template #content> Lorem ipsum dolor? </template>
+          <s-button>Top</s-button>
+        </s-tooltip>
+      </div>
 
-    <div class="inline-block">
-      <s-tooltip placement="bottom">
-        <template #content>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
-          quam dicta dignissimos eaque consequuntur perspiciatis voluptas harum
-          nam est laborum? Ea odit necessitatibus sed corrupti dolore ratione
-          sint repellat eos?
-        </template>
-        <s-button>Bottom</s-button>
-      </s-tooltip>
-    </div>
+      <div class="inline-block">
+        <s-tooltip placement="bottom">
+          <template #content>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            quam dicta dignissimos eaque consequuntur perspiciatis voluptas
+            harum nam est laborum? Ea odit necessitatibus sed corrupti dolore
+            ratione sint repellat eos?
+          </template>
+          <s-button>Bottom</s-button>
+        </s-tooltip>
+      </div>
 
-    <div class="inline-block">
-      <s-tooltip placement="left">
-        <template #content>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
-          quam dicta dignissimos eaque consequuntur perspiciatis voluptas harum
-          nam est laborum? Ea odit necessitatibus sed corrupti dolore ratione
-          sint repellat eos?
-        </template>
-        <s-button>Left</s-button>
-      </s-tooltip>
-    </div>
+      <div class="inline-block">
+        <s-tooltip placement="left">
+          <template #content>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            quam dicta dignissimos eaque consequuntur perspiciatis voluptas
+            harum nam est laborum? Ea odit necessitatibus sed corrupti dolore
+            ratione sint repellat eos?
+          </template>
+          <s-button>Left</s-button>
+        </s-tooltip>
+      </div>
 
-    <div class="inline-block">
-      <s-tooltip placement="right">
-        <template #content>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
-          quam dicta dignissimos eaque consequuntur perspiciatis voluptas harum
-          nam est laborum? Ea odit necessitatibus sed corrupti dolore ratione
-          sint repellat eos?
-        </template>
-        <s-button>Right</s-button>
-      </s-tooltip>
+      <div class="inline-block">
+        <s-tooltip placement="right">
+          <template #content>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae
+            quam dicta dignissimos eaque consequuntur perspiciatis voluptas
+            harum nam est laborum? Ea odit necessitatibus sed corrupti dolore
+            ratione sint repellat eos?
+          </template>
+          <s-button>Right</s-button>
+        </s-tooltip>
+      </div>
     </div>
   </div>
 </template>

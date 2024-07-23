@@ -9,11 +9,11 @@ export interface SidebarRouter {
   name: string;
   icon?: string;
   iconClass?: string;
-  permissions: string[];
+  permissions: string[]; // use fetch me return permission
   router: Router;
   isChildren?: boolean;
   children?: SidebarRouter[];
-  allowView?: string[];
+  allowView?: string[]; // active menu when link another route name ex: ['user_edit']
 }
 
 const sidebar: SidebarRouter[] = [

@@ -148,7 +148,7 @@ const selectPerPage = () => {
       }}/{{ totalItems }}
     </div>
     <div class="flex items-center space-x-5">
-      <SSelect
+      <s-select
         v-model="limit"
         :options="perPages"
         name="value"
@@ -157,9 +157,10 @@ const selectPerPage = () => {
         class="!w-32"
         :allowEmpty="false"
         placeholder="Per page"
-        @select="selectPerPage"
+        @onChange="selectPerPage"
         open-direction="top"
-      ></SSelect>
+        :showSearch="false"
+      ></s-select>
       <nav aria-label="Page navigation">
         <ul class="inline-flex space-x-2">
           <li class="hidden sm:block">

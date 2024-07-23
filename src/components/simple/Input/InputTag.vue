@@ -76,7 +76,7 @@ const addTag = () => {
     />
     <div
       v-for="(item, index) in tags"
-      class="typo-small py-1 px-2 inline-block border border-gray-300 rounded-lg bg-blue-100 mr-1 mt-2"
+      class="typo-small py-1 px-2 inline-block border border-gray-300 rounded-lg bg-gray-100 mr-1 mt-2"
     >
       <div class="flex items-center">
         <div class="line-clamp-1">
@@ -87,7 +87,7 @@ const addTag = () => {
             @click.stop="tags.splice(index, 1)"
             width="16"
             height="16"
-            class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
+            class="text-gray-500 svg-line hover:text-red-600 cursor-pointer"
             :src="$icon.render('iconClose')"
           ></s-icon>
         </div>

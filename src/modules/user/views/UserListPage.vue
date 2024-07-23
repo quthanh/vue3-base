@@ -378,8 +378,7 @@ fetchData();
               track-by="id"
               v-model="role"
               :options="roles"
-              @select="selectRole()"
-              @remove="selectRole()"
+              @onChange="selectRole()"
               placeholder="Select role"
             ></s-select>
           </div>
