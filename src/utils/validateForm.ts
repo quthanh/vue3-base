@@ -11,7 +11,7 @@ const validateForm = async (schema: any, data: any) => {
   } catch (error: any) {
     const errorMessages: { [key: string]: string } = {};
 
-    error.inner.forEach((item: any) => {
+    error?.inner?.forEach((item: any) => {
       errorMessages[item.path] = item.message;
     });
 

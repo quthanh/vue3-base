@@ -1,13 +1,13 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { VARIANT, ICON, ICON_NAME } from './const';
+import { computed } from "vue";
+import { VARIANT, ICON, ICON_NAME } from "./const";
 
 const props = withDefaults(
   defineProps<{
     variant?: string;
   }>(),
   {
-    variant: 'primary',
+    variant: "primary",
   }
 );
 
@@ -23,10 +23,8 @@ const buildClasses = computed(() => {
   >
     <div class="flex-[0_0_20px] mr-4">
       <s-icon
-        width="24"
-        height="24"
-        :src="$icon.render(ICON_NAME[props.variant])"
-        class=""
+        :name="ICON_NAME[props.variant]"
+        class="w-6 h-6"
         :class="ICON[props.variant]"
       ></s-icon>
     </div>

@@ -66,10 +66,10 @@ const { isSidebarCollapse } = storeToRefs(systemStore);
       >
         <template v-if="menuItem.icon">
           <s-icon
-            :src="$icon.render(menuItem.icon)"
+            :name="menuItem.icon"
             width="24"
             height="24"
-            class="min-w-[24px]"
+            class="min-w-[24px] w-6 h-6"
             :class="menuItem.iconClass"
           ></s-icon>
         </template>

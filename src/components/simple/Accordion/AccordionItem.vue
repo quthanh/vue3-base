@@ -32,11 +32,11 @@ const toggle = () => {
     >
       <slot name="title"></slot>
       <s-icon
-        :src="$icon.render('iconDown')"
         class="svg-line transform transition-transform duration-300"
         :class="{
           'rotate-180': isOpen,
         }"
+        name="down"
       ></s-icon>
     </div>
 

@@ -34,8 +34,8 @@ const { logout, profile } = useAccountStore();
               class="cursor-pointer block p-3 text-gray-900 rounded-lg hover:bg-gray-50"
             >
               <s-icon
-                :src="$icon.render('iconLogout')"
                 class="!text-gray-500 mr-2 svg-line"
+                name="logout"
               ></s-icon>
               Sign out
             </span>

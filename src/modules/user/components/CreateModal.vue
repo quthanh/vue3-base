@@ -186,7 +186,7 @@ fetchListRole();
             <div class="mt-2">
               <div class="flex items-center">
                 <s-icon
-                  :src="$icon.render('iconCheck')"
+                  name="check"
                   class="mr-2 !text-gray-500"
                   :class="{
                     '!text-green-600': form.password && !errors.password,
@@ -228,7 +228,7 @@ fetchListRole();
             <div class="mt-2">
               <div class="flex items-center">
                 <s-icon
-                  :src="$icon.render('iconCheck')"
+                  name="check"
                   class="mr-2 !text-gray-500"
                   :class="{
                     '!text-green-600':

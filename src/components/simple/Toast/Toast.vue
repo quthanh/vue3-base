@@ -4,7 +4,7 @@
     :class="VARIANT[type]"
     class="z-[100] fixed top-5 left-1/2 -translate-x-1/2 top-break-word flex p-5 rounded-lg text-gray-900 w-80"
   >
-    <div class="flex-[0_0_20px] mr-4">
+    <div class="flex-[0_0_20px] mr-2 relative top-[2px]">
       <svg
         v-if="['info'].includes(type)"
         :class="ICON[type]"

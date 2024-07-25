@@ -80,13 +80,12 @@ const setFiles = () => {
         class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-1 w-full flex items-center justify-center px-2"
       >
         <s-icon
-          width="24"
-          height="24"
           :class="{
             '!text-red-500': error,
             '!text-blue-600': !error,
           }"
-          :src="$icon.render('iconPlus')"
+          class="w-6 h-6"
+          name="plus"
         ></s-icon>
       </div>
     </div>
@@ -102,9 +101,8 @@ const setFiles = () => {
         @click="removeFile(index)"
       >
         <s-icon
-          width="20"
-          height="20"
-          :src="$icon.render('iconClose')"
+          name="close"
+          class="text-gray-500 hover:text-red-500 w-5 h-5"
         ></s-icon>
       </div>
 

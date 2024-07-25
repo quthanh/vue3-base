@@ -75,8 +75,7 @@ export const useAccountStore = defineStore({
   actions: {
     async login() {
       try {
-        // const { data: responseData } = await login(params);
-        // const { data } = responseData;
+        // const { data } = await login(params);
 
         const data = {
           token: "token here",
@@ -118,8 +117,7 @@ export const useAccountStore = defineStore({
           permissions: [],
         };
 
-        // const { data: responseData } = await me();
-        // const { data } = responseData;
+        // const { data } = await me();
         // this.profile = {
         //   ...this.profile,
         //   name: data.first_name + " " + data.last_name,

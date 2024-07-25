@@ -57,10 +57,8 @@ const isFullAccess = computed(() => {
     <div class="w-16">
       <s-icon
         v-if="isShowIcon"
-        :src="$icon.render('iconArrowDown')"
-        width="24"
-        height="24"
-        class="min-w-[24px] cursor-pointer"
+        name="arrow-down"
+        class="min-w-[24px] cursor-pointer w-6 h-6"
         :class="{ '-rotate-90': !toggleChildren }"
         @click="toggleChildren = !toggleChildren"
       >

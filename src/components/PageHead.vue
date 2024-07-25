@@ -47,10 +47,8 @@ withDefaults(
         }"
       >
         <s-icon
-          width="24"
-          height="24"
-          :src="$icon.render('iconArrowLeft')"
-          class="svg-line text-gray-700 mr-1"
+          class="svg-line text-gray-700 mr-1 w-6 h-6"
+          name="arrow-left"
         ></s-icon>
         {{ router.label }}
       </router-link>

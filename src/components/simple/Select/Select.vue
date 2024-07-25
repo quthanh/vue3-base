@@ -216,10 +216,9 @@ const searchFocus = () => {
                   <div class="ml-1">
                     <s-icon
                       @click.stop="model.splice(indexModel, 1)"
-                      width="16"
-                      height="16"
-                      class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
+                      class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer w-4 h-4"
                       :src="$icon.render('iconClose')"
+                      name="close"
                     ></s-icon>
                   </div>
                 </div>
@@ -241,10 +240,9 @@ const searchFocus = () => {
               @click.stop="model = undefined"
             >
               <s-icon
-                width="20"
-                height="20"
-                class="!text-gray-500 svg-line hover:!text-blue-600"
+                class="!text-gray-500 svg-line hover:!text-blue-600 w-5 h-5"
                 :src="$icon.render('iconClose')"
+                name="close"
               ></s-icon>
             </div>
           </div>
@@ -255,11 +253,9 @@ const searchFocus = () => {
 
           <div class="w-6 absolute right-2 top-1/2 -translate-y-1/2">
             <s-icon
-              :src="$icon.render('iconDown')"
-              width="24"
-              height="24"
-              class="!text-gray-500 svg-line"
+              class="!text-gray-500 svg-line w-6 h-6"
               :class="{ '-rotate-180': isShowDropdown }"
+              name="down"
             ></s-icon>
           </div>
         </div>
@@ -278,10 +274,8 @@ const searchFocus = () => {
               <template #append v-if="keyword">
                 <s-icon
                   @click.stop="keyword = ''"
-                  width="20"
-                  height="20"
-                  class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
-                  :src="$icon.render('iconClose')"
+                  class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer w-5 h-5"
+                  name="close"
                 ></s-icon>
               </template>
             </Input>
@@ -321,10 +315,8 @@ const searchFocus = () => {
                     selectOption(option);
                     onClose();
                   "
-                  width="16"
-                  height="16"
-                  class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
-                  :src="$icon.render('iconClose')"
+                  class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer w-4 h-4"
+                  name="close"
                 ></s-icon>
 
                 <s-icon
@@ -332,10 +324,8 @@ const searchFocus = () => {
                     selectOption(option);
                     onClose();
                   "
-                  width="16"
-                  height="16"
-                  class="!text-green-600 svg-line"
-                  :src="$icon.render('iconCheckLine')"
+                  class="!text-green-600 svg-line w-4 h-4"
+                  name="check-line"
                 ></s-icon>
               </div>
             </SelectItem>

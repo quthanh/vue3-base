@@ -3,9 +3,9 @@ import { ref, watch } from "vue";
 import Loading from "../Loading/Loading.vue";
 
 const SIZE_ICON: Record<string, string> = {
-  default: "48",
-  small: "24",
-  large: "48",
+  default: "w-12 h-12",
+  small: "w-6 h-6",
+  large: "w-12 h-12",
 };
 
 const props = withDefaults(
@@ -55,9 +55,8 @@ onLoad();
 
   <div v-else-if="!isLoading && isError">
     <s-icon
-      :src="$icon.render('iconGallery')"
-      :width="SIZE_ICON[size]"
-      :height="SIZE_ICON[size]"
+      name="gallery"
+      :class="SIZE_ICON[size]"
       class="!text-gray-500"
     ></s-icon>
   </div>

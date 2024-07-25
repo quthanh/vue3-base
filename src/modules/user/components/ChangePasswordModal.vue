@@ -102,11 +102,11 @@ const onCancel = () => {
           <div class="mt-2">
             <div class="flex items-center">
               <s-icon
-                :src="$icon.render('iconCheck')"
                 class="mr-2 !text-gray-500"
                 :class="{
                   '!text-green-600': form.new_password && !errors.new_password,
                 }"
+                name="check"
               >
               </s-icon>
               <span
@@ -143,7 +143,7 @@ const onCancel = () => {
           <div class="mt-2">
             <div class="flex items-center">
               <s-icon
-                :src="$icon.render('iconCheck')"
+                name="check"
                 class="mr-2 !text-gray-500"
                 :class="{
                   '!text-green-600':

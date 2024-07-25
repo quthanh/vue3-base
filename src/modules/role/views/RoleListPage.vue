@@ -105,10 +105,7 @@ fetchData();
       <div class="flex items-center space-x-11">
         <div class="w-[400px]">
           <div class="flex justify-between mb-2">
-            <label
-              for="name"
-              class="typo-small text-gray-900 cursor-pointer"
-            >
+            <label for="name" class="typo-small text-gray-900 cursor-pointer">
               Search
             </label>
           </div>
@@ -121,10 +118,8 @@ fetchData();
           >
             <template #prepend>
               <s-icon
-                width="20"
-                height="20"
-                class="!text-gray-500 svg-line"
-                :src="$icon.render('iconSearch')"
+                class="!text-gray-500 svg-line w-5 h-5"
+                name="search"
               ></s-icon>
             </template>
           </s-input>
@@ -133,12 +128,7 @@ fetchData();
           class="mt-7 flex items-center cursor-pointer !text-gray-500 hover:!text-blue-600"
           @click="isShowFilterModal = true"
         >
-          <s-icon
-            width="24"
-            height="24"
-            class="mr-2"
-            :src="$icon.render('iconFilter')"
-          ></s-icon>
+          <s-icon class="mr-2 w-6 h-6" name="filter"></s-icon>
           <span class="text-gray-500 hover:text-blue-600">Filter</span>
         </div>
         <div
@@ -157,7 +147,7 @@ fetchData();
             :disabled="!slotProps.hasPermission"
             :class="{ 'pointer-events-none': !slotProps.hasPermission }"
           >
-            <s-icon :src="$icon.render('iconPlus')" class="mr-2"></s-icon>
+            <s-icon name="plus" class="mr-2"></s-icon>
             Create Role
           </SButton>
         </CheckPermission>
@@ -203,10 +193,10 @@ fetchData();
                   <s-icon
                     :disabled="!slotProps.hasPermission"
                     :class="{ 'pointer-events-none': !slotProps.hasPermission }"
-                    class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
+                    class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer w-6 h-6"
                     width="24"
                     height="24"
-                    :src="$icon.render('iconEdit')"
+                    name="edit"
                     @click="
                       setCurrentRole(item);
                       isShowEditModal = true;
@@ -226,10 +216,10 @@ fetchData();
                       setCurrentRole(item);
                       isShowDeleteModal = true;
                     "
-                    class="!text-danger svg-line cursor-pointer"
+                    class="!text-danger svg-line cursor-pointer w-6 h-6"
                     width="24"
                     height="24"
-                    :src="$icon.render('iconTrash')"
+                    name="trash"
                   >
                   </s-icon>
                 </CheckPermission>

@@ -20,7 +20,7 @@ const sidebar: SidebarRouter[] = [
   {
     id: "dashboard",
     name: "Dashboard",
-    icon: "iconDashboard",
+    icon: "dashboard",
     iconClass: "svg-line",
     permissions: [],
     router: {
@@ -30,7 +30,7 @@ const sidebar: SidebarRouter[] = [
   // {
   //   id: "admin",
   //   name: "Admin",
-  //   icon: "iconUserOctagon",
+  //   icon: "user-octagon",
   //   router: {
   //     name: "user",
   //   },

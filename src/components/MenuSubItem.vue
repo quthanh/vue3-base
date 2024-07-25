@@ -94,10 +94,8 @@ const wrapperType = computed(() =>
     >
       <template v-if="menuItem.icon">
         <s-icon
-          :src="$icon.render(menuItem.icon)"
-          width="24"
-          height="24"
-          class="min-w-[24px]"
+          :name="menuItem.icon"
+          class="min-w-[24px] w-6 h-6"
           :class="[menuItem.iconClass]"
         ></s-icon>
       </template>
@@ -112,8 +110,8 @@ const wrapperType = computed(() =>
             },
             menuItem.iconClass,
           ]"
-          :src="$icon.render('iconDown')"
           class="!text-gray-500 svg-line min-w-[16px]"
+          name="down"
         ></s-icon>
       </template>
     </component>

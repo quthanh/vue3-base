@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed, watch, ref } from 'vue';
-const emit = defineEmits(['update:modelValue', 'change', 'changeLimit']);
+import { computed, watch, ref } from "vue";
+const emit = defineEmits(["update:modelValue", "change", "changeLimit"]);
 
 const props = withDefaults(
   defineProps<{
@@ -27,13 +27,13 @@ watch(
 );
 
 const setPage = (index: number) => {
-  emit('update:modelValue', index);
+  emit("update:modelValue", index);
 };
 const decreasePage = () => {
-  emit('update:modelValue', props.modelValue - 1);
+  emit("update:modelValue", props.modelValue - 1);
 };
 const increasePage = () => {
-  emit('update:modelValue', props.modelValue + 1);
+  emit("update:modelValue", props.modelValue + 1);
 };
 const computedTotalPages = computed(() => {
   if (!props.totalItems) return props.totalPages;
@@ -98,7 +98,7 @@ const pagesToDisplay = computed(() => {
 watch(
   () => props.modelValue,
   () => {
-    emit('change', props.modelValue);
+    emit("change", props.modelValue);
   }
 );
 
@@ -109,23 +109,23 @@ interface PerPageItem {
 
 const perPages = ref<PerPageItem[]>([
   {
-    name: '10/page',
+    name: "10/page",
     limit: 10,
   },
   {
-    name: '20/page',
+    name: "20/page",
     limit: 20,
   },
   {
-    name: '30/page',
+    name: "30/page",
     limit: 30,
   },
   {
-    name: '40/page',
+    name: "40/page",
     limit: 40,
   },
   {
-    name: '50/page',
+    name: "50/page",
     limit: 50,
   },
 ]);
@@ -136,7 +136,7 @@ const limit = ref<PerPageItem>(
 );
 
 const selectPerPage = () => {
-  emit('changeLimit', limit.value.limit);
+  emit("changeLimit", limit.value.limit);
 };
 </script>
 
@@ -174,7 +174,7 @@ const selectPerPage = () => {
               }"
               :disabled="modelValue === 1"
             >
-              <s-icon :src="$icon.render('iconArrowDoubleLeft')"></s-icon>
+              <s-icon name="arrow-double-left"></s-icon>
             </button>
           </li>
           <li>
@@ -187,10 +187,7 @@ const selectPerPage = () => {
                   !isDecreaseDisabled,
               }"
             >
-              <s-icon
-                :src="$icon.render('iconDown')"
-                class="rotate-90 svg-line"
-              ></s-icon>
+              <s-icon name="down" class="rotate-90 svg-line"></s-icon>
             </button>
           </li>
           <li
@@ -222,10 +219,7 @@ const selectPerPage = () => {
                   !isIncreaseDisabled,
               }"
             >
-              <s-icon
-                :src="$icon.render('iconDown')"
-                class="-rotate-90 svg-line"
-              ></s-icon>
+              <s-icon name="down" class="-rotate-90 svg-line"></s-icon>
             </button>
           </li>
           <li class="hidden sm:block">
@@ -240,10 +234,7 @@ const selectPerPage = () => {
               }"
               :disabled="modelValue === computedTotalPages"
             >
-              <s-icon
-                :src="$icon.render('iconArrowDoubleLeft')"
-                class="rotate-180"
-              ></s-icon>
+              <s-icon class="rotate-180" name="arrow-double-left"></s-icon>
             </button>
           </li>
         </ul>

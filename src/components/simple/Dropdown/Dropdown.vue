@@ -124,10 +124,7 @@ watch(
           class="w-5 h-5 flex items-center justify-center"
           :class="{ 'rotate-180': show }"
         >
-          <s-icon
-            :src="$icon.render('iconDown')"
-            class="!text-gray-500 svg-line"
-          ></s-icon>
+          <s-icon class="!text-gray-500 svg-line" name="down"></s-icon>
         </div>
       </div>
     </div>

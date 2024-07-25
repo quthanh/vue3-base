@@ -71,12 +71,7 @@ onUnmounted(() => {
               class="!text-gray-700 hover:!text-blue-600"
             >
               <slot name="close-icon">
-                <s-icon
-                  width="20"
-                  height="20"
-                  class="svg-line"
-                  :src="$icon.render('iconClose')"
-                ></s-icon>
+                <s-icon class="svg-line w-5 h-5" name="close"></s-icon>
               </slot>
             </button>
           </div>

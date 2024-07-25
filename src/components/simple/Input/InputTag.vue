@@ -85,10 +85,8 @@ const addTag = () => {
         <div class="ml-1">
           <s-icon
             @click.stop="tags.splice(index, 1)"
-            width="16"
-            height="16"
-            class="text-gray-500 svg-line hover:text-red-600 cursor-pointer"
-            :src="$icon.render('iconClose')"
+            class="text-gray-500 svg-line hover:text-red-600 cursor-pointer w-4 h-4"
+            name="close"
           ></s-icon>
         </div>
       </div>

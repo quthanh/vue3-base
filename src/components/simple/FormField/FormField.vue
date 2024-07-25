@@ -24,7 +24,7 @@ defineProps<{
 
     <slot></slot>
 
-    <div className="text-red-500 mt-1 text-sm capitalize-first" v-if="error">
+    <div class="text-red-500 mt-1 text-sm capitalize-first" v-if="error">
       {{ error }}
     </div>
   </div>

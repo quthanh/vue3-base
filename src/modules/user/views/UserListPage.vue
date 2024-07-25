@@ -181,8 +181,8 @@ fetchData();
               <s-icon
                 width="20"
                 height="20"
-                class="!text-gray-500 svg-line"
-                :src="$icon.render('iconSearch')"
+                class="!text-gray-500 svg-line w-5 h-5"
+                name="search"
               ></s-icon>
             </template>
           </s-input>
@@ -194,8 +194,8 @@ fetchData();
           <s-icon
             width="24"
             height="24"
-            class="mr-2"
-            :src="$icon.render('iconFilter')"
+            class="mr-2 w-6 h-6"
+            name="filter"
           ></s-icon>
           <span class="text-gray-500 hover:text-blue-600">Filter</span>
         </div>
@@ -215,7 +215,7 @@ fetchData();
             :disabled="!slotProps.hasPermission"
             :class="{ 'pointer-events-none': !slotProps.hasPermission }"
           >
-            <s-icon :src="$icon.render('iconPlus')" class="mr-2"></s-icon>
+            <s-icon name="plus" class="mr-2"></s-icon>
             Create User
           </SButton>
         </CheckPermission>
@@ -267,10 +267,8 @@ fetchData();
               <div class="flex space-x-4 items-center">
                 <s-icon
                   v-if="allowAction(item, 'users.update')"
-                  class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
-                  width="24"
-                  height="24"
-                  :src="$icon.render('iconEdit')"
+                  class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer w-6 h-6"
+                  name="edit"
                   @click="
                     setCurrentUser(item);
                     isShowEditModal = true;
@@ -280,10 +278,8 @@ fetchData();
                 <template v-else>
                   <s-tooltip content="User not permission" :hover="true">
                     <s-icon
-                      class="!text-gray-500 svg-line opacity-60 cursor-no-drop"
-                      width="24"
-                      height="24"
-                      :src="$icon.render('iconEdit')"
+                      class="!text-gray-500 svg-line opacity-60 cursor-no-drop w-6 h-6"
+                      name="edit"
                     ></s-icon>
                   </s-tooltip>
                 </template>
@@ -295,10 +291,8 @@ fetchData();
                 >
                   <template #title>
                     <s-icon
-                      class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer"
-                      width="24"
-                      height="24"
-                      :src="$icon.render('iconMoreSquare')"
+                      class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer w-6 h-6"
+                      name="more-square"
                     >
                     </s-icon>
                   </template>

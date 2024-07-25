@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { computed } from "vue";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 const breadcrumbs = computed(() => {
@@ -13,10 +13,8 @@ const breadcrumbs = computed(() => {
       <template v-for="(item, index) in breadcrumbs" :key="index">
         <li class="w-6 h-6 flex items-center justify-center" v-if="index !== 0">
           <s-icon
-            :src="$icon.render('iconDown')"
-            width="24"
-            height="24"
-            class="!text-gray-500 -rotate-90 svg-line"
+            class="!text-gray-500 -rotate-90 svg-line w-6 h-6"
+            name="down"
           ></s-icon>
         </li>
         <li class="inline-flex items-center">

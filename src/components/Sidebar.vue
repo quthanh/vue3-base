@@ -59,10 +59,8 @@ if (isTablet.value) {
               v-if="!isTablet"
             >
               <s-icon
-                width="24"
-                height="24"
-                :src="$icon.render('iconSidebarLeft')"
-                class="!text-gray-500 svg-line"
+                class="!text-gray-500 svg-line w-6 h-6"
+                name="sidebar-left"
               ></s-icon
             ></span>
           </div>
@@ -119,10 +117,8 @@ if (isTablet.value) {
           <template #title>
             <div>
               <s-icon
-                width="24"
-                height="24"
-                :src="$icon.render('iconDotsHorizontal')"
-                class="!text-gray-500 svg-line"
+                class="!text-gray-500 svg-line w-6 h-6"
+                name="dots-horizontal"
               ></s-icon>
             </div>
           </template>
