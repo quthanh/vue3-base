@@ -2,7 +2,7 @@
   <div :class="class" v-html="icon"></div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -23,8 +23,6 @@ const getIcon = async () => {
       import: "default",
       eager: false,
     });
-
-    console.log(iconsImport, "iconsImport");
 
     const rawIcon = await iconsImport[
       `/src/assets/svg-icon/${props.name}.svg`
@@ -49,4 +47,8 @@ const getIcon = async () => {
 };
 
 getIcon();
+
+watchEffect(async () => {
+  getIcon();
+});
 </script>

@@ -14,10 +14,10 @@ export const ICON: Record<string, string> = {
   success: '!text-green-800 svg-line',
 };
 
-export const ICON_NAME: Record<string, string> = {
-  primary: 'iconInfoCircle',
-  secondary: 'iconInfoCircle',
-  danger: 'iconCloseCircle',
-  warning: 'iconError',
-  success: 'iconSuccess',
-};
+  export const ICON_NAME: Record<string, string> = {
+    primary: 'info-circle',
+    secondary: 'info-circle',
+    danger: 'close-circle',
+    warning: 'error',
+    success: 'success',
+  };

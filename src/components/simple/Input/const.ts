@@ -7,8 +7,8 @@ export const SIZE: Record<string, string> = {
 export const VARIANT: Record<string, string> = {
   primary: "focus:ring-blue-500 focus:border-blue-500",
   secondary: "focus:ring-gray-500 focus:border-gray-300",
-  danger: "focus:ring-red-500 focus:bg-red-500 !bg-red-500",
+  danger: "focus:ring-red-500 focus:border-red-500 !border-red-500",
   error: "focus:ring-red-500 focus:border-red-500 !border-red-500 is-error",
-  warning: "focus:ring-yellow-500 focus:bg-yellow-500",
-  success: "focus:ring-green-500 focus:bg-green-500",
+  warning: "focus:ring-yellow-500 focus:border-yellow-500",
+  success: "focus:ring-green-500 focus:border-green-500",
 };

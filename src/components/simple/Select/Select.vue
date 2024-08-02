@@ -43,6 +43,10 @@ const emit = defineEmits(["onChange"]);
 
 const model = useVModel(props, "modelValue");
 
+if (model.value && !Array.isArray(model.value) && props.isMultiple) {
+  model.value = [model.value];
+}
+
 const isShowDropdown = ref<boolean>(false);
 const keyword = ref<string>();
 const select = ref();
@@ -217,7 +221,6 @@ const searchFocus = () => {
                     <s-icon
                       @click.stop="model.splice(indexModel, 1)"
                       class="!text-gray-500 svg-line hover:!text-blue-600 cursor-pointer w-4 h-4"
-                      :src="$icon.render('iconClose')"
                       name="close"
                     ></s-icon>
                   </div>
@@ -241,7 +244,6 @@ const searchFocus = () => {
             >
               <s-icon
                 class="!text-gray-500 svg-line hover:!text-blue-600 w-5 h-5"
-                :src="$icon.render('iconClose')"
                 name="close"
               ></s-icon>
             </div>

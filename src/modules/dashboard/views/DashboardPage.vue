@@ -15,6 +15,7 @@ const optionsOne = ref([
 const optionOne = ref(["Select 1", "Select 2"]);
 
 const isShowModal = ref<boolean>(false);
+const isShowDrawer = ref<boolean>(false);
 
 const optionsTwo = ref([
   {
@@ -50,16 +51,50 @@ const dateTime = ref("2023-08-05 10:00");
 const time = ref("23:00");
 const month = ref("2023-08");
 const week = ref("2023-W31");
+const position = ref("left");
 </script>
 <template>
   <div class="space-y-6">
+    <s-button @click="isShowDrawer = true"> Show Drawer </s-button>
+    <s-radio v-model="position" value="top"> Top </s-radio>
+    <s-radio v-model="position" value="bottom"> Bottom </s-radio>
+    <s-radio v-model="position" value="left"> Left </s-radio>
+    <s-radio v-model="position" value="right"> Right </s-radio>
+
+    <s-drawer
+      v-if="isShowDrawer"
+      :position="position"
+      @close="isShowDrawer = false"
+    >
+      <template #header>
+        <div class="font-semibold">Drawer</div>
+      </template>
+
+      <template #body>
+        <div>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi ad
+          similique corrupti ullam culpa necessitatibus, repellat consequatur
+          aspernatur animi illum, odit, quos fugiat aliquam excepturi ducimus
+          magnam nesciunt pariatur molestias.
+        </div>
+      </template>
+
+      <template #footer>
+        <div class="flex gap-3 justify-end">
+          <s-button variant="secondary" @click="isShowDrawer = false">
+            Close
+          </s-button>
+        </div>
+      </template>
+    </s-drawer>
+
     <s-upload-file-single></s-upload-file-single>
 
     <s-upload-file-multiple
       :files="[
         {
           id: 1,
-          url: 'https://cafefcdn.com/zoom/223_140/203337114487263232/2024/7/18/avatar1689674138694-1689674138883971533512-17212776986441580264534-8-0-408-640-crop-1721277701765741963912.jpg',
+          url: 'https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Image+1',
         },
       ]"
     ></s-upload-file-multiple>
