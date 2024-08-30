@@ -48,55 +48,57 @@ onUnmounted(() => {
 </script>
 <template>
   <div>
-    <div class="bg-gray-900 bg-opacity-50 fixed inset-0 z-50" />
     <div
-      tabindex="-1"
-      class="overflow-y-auto p-6 overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full flex"
-      :class="`${POSITION[position]}`"
+      class="bg-gray-900 bg-opacity-50 fixed inset-0 z-50"
+      @click="closeOnClickOutside ? closeModal() : undefined"
+    />
+    <div
+      class="overflow-y-auto overflow-x-hidden fixed z-[51] w-full"
+      :class="[POSITION[position], SIZE[size]]"
       @click="closeOnClickOutside ? closeModal() : undefined"
     >
-      <div @click.stop class="relative w-full h-auto" :class="`${SIZE[size]}`">
-        <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow">
-          <!-- Modal header -->
-          <div
-            class="pt-6 px-6 rounded-t-xl flex justify-between items-center"
-            v-if="$slots.header"
+      <!-- <div @click.stop class="relative w-full h-auto" :class="`${SIZE[size]}`"> -->
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow m-6" @click.stop>
+        <!-- Modal header -->
+        <div
+          class="pt-6 px-6 rounded-t-xl flex justify-between items-center"
+          v-if="$slots.header"
+        >
+          <slot name="header" />
+          <button
+            v-if="iconClose"
+            @click="closeModal"
+            type="button"
+            class="!text-gray-700 hover:!text-blue-600"
           >
-            <slot name="header" />
-            <button
-              v-if="iconClose"
-              @click="closeModal"
-              type="button"
-              class="!text-gray-700 hover:!text-blue-600"
-            >
-              <slot name="close-icon">
-                <s-icon class="svg-line w-5 h-5" name="close"></s-icon>
-              </slot>
-            </button>
+            <slot name="close-icon">
+              <s-icon class="svg-line w-5 h-5" name="close"></s-icon>
+            </slot>
+          </button>
+        </div>
+        <!-- Modal body -->
+        <UseElementBounding v-slot="{ height }">
+          <div
+            class="p-6 break-word"
+            :class="[
+              $slots.footer
+                ? 'max-h-[calc(100vh-162px)]'
+                : 'max-h-[calc(100vh-100px)]',
+              {
+                'overflow-y-auto': height >= windowHeight - 230,
+              },
+            ]"
+          >
+            <slot name="body" />
           </div>
-          <!-- Modal body -->
-          <UseElementBounding v-slot="{ height }">
-            <div
-              class="p-6 break-word"
-              :class="[
-                $slots.footer
-                  ? 'max-h-[calc(100vh-190px)]'
-                  : 'max-h-[calc(100vh-120px)]',
-                {
-                  'overflow-y-auto': height >= windowHeight - 230,
-                },
-              ]"
-            >
-              <slot name="body" />
-            </div>
-          </UseElementBounding>
-          <!-- Modal footer -->
-          <div v-if="$slots.footer" class="py-3 px-6 rounded-b-xl bg-gray-50">
-            <slot name="footer" />
-          </div>
+        </UseElementBounding>
+        <!-- Modal footer -->
+        <div v-if="$slots.footer" class="py-3 px-6 rounded-b-xl bg-gray-50">
+          <slot name="footer" />
         </div>
       </div>
+      <!-- </div> -->
     </div>
   </div>
 </template>

@@ -1,5 +1,15 @@
 // eslint-disable-next-line no-undef
 const colors = require("tailwindcss/colors");
+const plugin = require("tailwindcss/plugin");
+
+const customVariants = plugin(({ addVariant, e }) => {
+  addVariant("cafe", ({ modifySelectors, separator }) => {
+    modifySelectors(({ className }) => {
+      const element = e(`cafe${separator}${className}`);
+      return `.cafe .${element}`;
+    });
+  });
+});
 
 // eslint-disable-next-line no-undef
 module.exports = {
@@ -256,5 +266,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [customVariants],
 };

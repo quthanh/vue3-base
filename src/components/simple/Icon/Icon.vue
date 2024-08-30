@@ -1,5 +1,5 @@
 <template>
-  <div :class="class" v-html="icon"></div>
+  <div v-html="icon"></div>
 </template>
 <script setup lang="ts">
 import { ref, watchEffect } from "vue";

@@ -55,6 +55,15 @@ const position = ref("left");
 </script>
 <template>
   <div class="space-y-6">
+    <div
+      class="cafe:text-red-500 cafe:hover:text-blue-600 cursor-pointer [&:nth-child(2)]:underline"
+      v-for="i in 4"
+    >
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quasi,
+      ipsa, quisquam vitae iusto labore repudiandae culpa voluptates maiores
+      eius quas in atque excepturi ducimus amet unde, assumenda reiciendis
+      ullam!
+    </div>
     <s-button @click="isShowDrawer = true"> Show Drawer </s-button>
     <s-radio v-model="position" value="top"> Top </s-radio>
     <s-radio v-model="position" value="bottom"> Bottom </s-radio>
@@ -100,11 +109,23 @@ const position = ref("left");
     ></s-upload-file-multiple>
 
     <s-button @click="isShowModal = true"> Show modal </s-button>
+
     <s-modal v-if="isShowModal" @close="isShowModal = false">
       <template #header>
         <h4 class="uppercase text-gray-900">Modal</h4>
       </template>
-      <template #body> aaaa </template>
+      <template #body>
+        <div v-for="i in 100">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum ad
+          ratione iure exercitationem quia expedita debitis recusandae, unde
+          blanditiis ullam aut sunt repudiandae quis iste beatae in nobis
+          voluptates quae.
+        </div>
+        aaaa
+      </template>
+      <!-- <template #footer>
+        <s-button>aa</s-button>  
+      </template> -->
     </s-modal>
 
     <s-button
