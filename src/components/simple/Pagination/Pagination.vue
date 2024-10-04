@@ -8,6 +8,7 @@ const props = withDefaults(
     totalItems: number;
     sliceLength?: number;
     perPage?: number;
+    totalPages?: number;
   }>(),
   {
     modelValue: 1,

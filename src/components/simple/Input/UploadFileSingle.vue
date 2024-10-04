@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useVModel } from "@vueuse/core";
+import { readAndResizeImageFile } from "@/utils/readFile.ts";
 
 const emit = defineEmits(["file"]);
 
@@ -10,6 +12,12 @@ const props = withDefaults(
     itemClass?: string;
     previewFile?: string;
     hasRemove?: true;
+    modelValue?: any;
+    resizeFile?: {
+      width: number; // 3000px
+      type: "image/webp" | "image/jpeg" | "image/png";
+      quality: number; // 0.8
+    };
   }>(),
   {
     acceptFile: "image/png, image/gif, image/jpeg, image/webp",
@@ -19,9 +27,9 @@ const props = withDefaults(
 );
 
 const previewFile = ref(props.previewFile);
-const newFile = ref();
+const newFile = useVModel(props, "modelValue");
 
-const changeFile = ($event: Event) => {
+const changeFile = async ($event: Event) => {
   const file = ($event.target as HTMLInputElement)?.files?.[0];
   if (!file) {
     previewFile.value = props.previewFile || "";
@@ -30,10 +38,19 @@ const changeFile = ($event: Event) => {
 
   newFile.value = file;
 
-  const URL = window.webkitURL || window.URL;
-  previewFile.value = URL.createObjectURL(file);
+  const { previewFile: preview, newFile: resizeFile } =
+    await readAndResizeImageFile(
+      file,
+      props?.resizeFile?.width,
+      props?.resizeFile?.type,
+      props?.resizeFile?.quality
+    );
 
-  setFile();
+  previewFile.value = preview;
+
+  if (props?.resizeFile?.width) {
+    newFile.value = resizeFile;
+  }
 
   ($event.target as HTMLInputElement).value = "";
 };
@@ -41,12 +58,6 @@ const changeFile = ($event: Event) => {
 const removeFile = () => {
   previewFile.value = "";
   newFile.value = "";
-
-  setFile();
-};
-
-const setFile = () => {
-  emit("file", newFile.value);
 };
 </script>
 <template>

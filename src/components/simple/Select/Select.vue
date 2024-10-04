@@ -4,6 +4,7 @@ import Dropdown from "./../Dropdown/Dropdown.vue";
 import Input from "./../Input/Input.vue";
 import { useVModel, useElementBounding } from "@vueuse/core";
 import SelectItem from "./SelectItem.vue";
+import { watchDebounced } from "@vueuse/core";
 
 const props = withDefaults(
   defineProps<{
@@ -23,6 +24,12 @@ const props = withDefaults(
     disabled?: boolean;
     maxLength?: number;
     placeholderSearch?: string;
+    disabledOptions?: any[];
+    hasCallbackFunc?: boolean;
+    timeCallback?: number;
+    isLoadingCallBack?: boolean;
+    isCreateNew?: boolean;
+    isLoadingCreateNew?: boolean;
   }>(),
   {
     allowEmpty: true,
@@ -36,10 +43,15 @@ const props = withDefaults(
     showSearch: true,
     maxLength: 100,
     placeholderSearch: "Type to search ...",
+    isCreateNew: false,
+    isLoadingCreateNew: false,
+    hasCallbackFunc: false,
+    timeCallback: 600,
+    isLoadingCallBack: false,
   }
 );
 
-const emit = defineEmits(["onChange"]);
+const emit = defineEmits(["onChange", "createNew", "callbackFunc"]);
 
 const model = useVModel(props, "modelValue");
 
@@ -52,6 +64,18 @@ const keyword = ref<string>();
 const select = ref();
 const { width } = useElementBounding(select);
 
+const isLoading = computed(() => props.isLoadingCreateNew);
+
+watchDebounced(
+  keyword,
+  () => {
+    if (!props.hasCallbackFunc) return;
+
+    emit("callbackFunc", keyword.value);
+  },
+  { debounce: props.timeCallback || 600, maxWait: 1200 }
+);
+
 const isObject = (item: any) => {
   return typeof item === "object";
 };
@@ -63,6 +87,8 @@ const removeHtmlTag = (val?: string) => {
 
 const filterOptions = computed(() => {
   if (!props.options?.length) return [];
+
+  if (props.hasCallbackFunc) return props.options;
 
   if (!keyword?.value) {
     return props.options?.slice(0, props.maxLength);
@@ -94,6 +120,18 @@ const filterOptions = computed(() => {
 
 const buildOptionName = (item: any) => {
   return isObject(item) ? item[props.label] : item;
+};
+
+const isDisabledOption = (item: any) => {
+  const disabledOptions = props?.disabledOptions;
+
+  if (!disabledOptions?.length) return false;
+
+  if (isObject(item)) {
+    return disabledOptions.includes(item[props.trackBy]);
+  }
+
+  return disabledOptions.includes(item);
 };
 
 const selectOption = (item: any) => {
@@ -158,6 +196,21 @@ watch(
   },
   { deep: true }
 );
+
+watch(
+  () => isLoading.value,
+  () => {
+    if (isLoading.value) return;
+
+    isShowDropdown.value = false;
+    keyword.value = "";
+  },
+  { deep: true }
+);
+
+const createNew = () => {
+  emit("createNew", keyword.value);
+};
 
 const searchFocus = () => {
   if (!props.showSearch || !filterOptions.value?.length) return;
@@ -282,8 +335,15 @@ const searchFocus = () => {
               </template>
             </Input>
           </div>
-
-          <div v-if="!options.length">No items.</div>
+          <div v-if="!filterOptions.length && isCreateNew">
+            <SelectItem
+              :class="{ 'pointer-events-none': isLoading }"
+              @click="createNew"
+            >
+              Create "{{ keyword }}"
+            </SelectItem>
+          </div>
+          <div v-else-if="!options.length">No items.</div>
           <div v-else-if="!filterOptions.length">No item any.</div>
 
           <div class="space-y-2 overflow-y-auto" v-else :class="contentClasses">
@@ -295,7 +355,10 @@ const searchFocus = () => {
               "
               :key="index"
               class="text-sm flex items-center gap-1"
-              :class="{ '!text-blue-600': checkActiveOption(option) }"
+              :class="{
+                '!text-blue-600': checkActiveOption(option),
+                'pointer-events-none opacity-50': isDisabledOption(option),
+              }"
             >
               <div
                 class="flex-1"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import $toast from "@/components/simple/Toast";
 
 // <s-select :options="optionsOne" v-model="optionOne" :isMultiple="true">
@@ -44,7 +44,7 @@ const optionsThree = ref([
 ]);
 const optionThree = ref();
 
-const tags = ref([]);
+const tags = ref(["123asd", "12da"]);
 
 const date = ref("2023-08-05");
 const dateTime = ref("2023-08-05 10:00");
@@ -52,18 +52,23 @@ const time = ref("23:00");
 const month = ref("2023-08");
 const week = ref("2023-W31");
 const position = ref("left");
+const multipleFiles = ref([
+  {
+    id: 1,
+    url: "https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Image+1",
+  },
+]);
+const file = ref();
+
+watch(
+  () => file.value,
+  () => {
+    console.log(file.value);
+  }
+);
 </script>
 <template>
   <div class="space-y-6">
-    <div
-      class="cafe:text-red-500 cafe:hover:text-blue-600 cursor-pointer [&:nth-child(2)]:underline"
-      v-for="i in 4"
-    >
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni quasi,
-      ipsa, quisquam vitae iusto labore repudiandae culpa voluptates maiores
-      eius quas in atque excepturi ducimus amet unde, assumenda reiciendis
-      ullam!
-    </div>
     <s-button @click="isShowDrawer = true"> Show Drawer </s-button>
     <s-radio v-model="position" value="top"> Top </s-radio>
     <s-radio v-model="position" value="bottom"> Bottom </s-radio>
@@ -97,35 +102,16 @@ const position = ref("left");
       </template>
     </s-drawer>
 
-    <s-upload-file-single></s-upload-file-single>
+    <s-upload-file-single v-model="file"></s-upload-file-single>
 
-    <s-upload-file-multiple
-      :files="[
-        {
-          id: 1,
-          url: 'https://via.placeholder.com/600x400/FF5733/FFFFFF?text=Image+1',
-        },
-      ]"
-    ></s-upload-file-multiple>
+    <s-upload-file-multiple v-model="multipleFiles"></s-upload-file-multiple>
 
     <s-button @click="isShowModal = true"> Show modal </s-button>
-
     <s-modal v-if="isShowModal" @close="isShowModal = false">
       <template #header>
         <h4 class="uppercase text-gray-900">Modal</h4>
       </template>
-      <template #body>
-        <div v-for="i in 100">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum ad
-          ratione iure exercitationem quia expedita debitis recusandae, unde
-          blanditiis ullam aut sunt repudiandae quis iste beatae in nobis
-          voluptates quae.
-        </div>
-        aaaa
-      </template>
-      <!-- <template #footer>
-        <s-button>aa</s-button>  
-      </template> -->
+      <template #body> aaaa </template>
     </s-modal>
 
     <s-button

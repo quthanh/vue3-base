@@ -1,7 +1,6 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-
-const emit = defineEmits(["files"]);
+import { useVModel } from "@vueuse/core";
+import { readAndResizeImageFile } from "@/utils/readFile.ts";
 
 const props = withDefaults(
   defineProps<{
@@ -9,8 +8,13 @@ const props = withDefaults(
     acceptFile?: string;
     parentClass?: string;
     itemClass?: string;
-    files?: any[];
+    modelValue: any[];
     hasRemove?: true;
+    resizeFile?: {
+      width: number; // 3000px
+      type: "image/webp" | "image/jpeg" | "image/png";
+      quality: number; // 0.8
+    };
   }>(),
   {
     acceptFile: "image/png, image/gif, image/jpeg, image/webp",
@@ -21,38 +25,46 @@ const props = withDefaults(
   }
 );
 
-const newFiles = ref<any[]>(props?.files || []);
+const newFiles = useVModel(props, "modelValue");
 
-const changeFile = ($event: Event) => {
+if (!newFiles.value) {
+  newFiles.value = [];
+}
+
+const changeFile = async ($event: Event) => {
   const files = ($event.target as HTMLInputElement)?.files;
   if (!files) {
     return;
   }
 
-  const URL = window.webkitURL || window.URL;
-
   for (let i = 0; i < files.length; i++) {
     const file = files[i];
 
-    newFiles.value.push({
-      is_new: true,
-      url: URL.createObjectURL(file),
-    });
-  }
+    try {
+      // Call the utility function for each file
+      const { previewFile, newFile } = await readAndResizeImageFile(
+        file,
+        props?.resizeFile?.width,
+        props?.resizeFile?.type,
+        props?.resizeFile?.quality
+      );
 
-  setFiles();
+      // Push each processed file and its preview URL into newFiles array
+      newFiles.value.push({
+        is_new: true,
+        url: previewFile, // The preview image in base64 format
+        file: props?.resizeFile?.width ? newFile : file, // The resized WebP file
+      });
+    } catch (error) {
+      console.error(`Error processing file ${file.name}:`, error);
+    }
+  }
 
   ($event.target as HTMLInputElement).value = "";
 };
 
 const removeFile = (index: number) => {
   newFiles.value.splice(index, 1);
-
-  setFiles();
-};
-
-const setFiles = () => {
-  emit("files", newFiles.value);
 };
 </script>
 <template>

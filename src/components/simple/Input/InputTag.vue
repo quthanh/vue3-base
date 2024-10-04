@@ -30,6 +30,9 @@ const props = withDefaults(
   }
 );
 const tags = useVModel(props, "modelValue");
+if (!tags.value) {
+  tags.value = [];
+}
 
 const tagElement = ref();
 
@@ -49,10 +52,6 @@ const addTag = () => {
     .map((item) => item.trim());
 
   if (!convertTag?.length) return;
-
-  if (!tags.value) {
-    tags.value = [];
-  }
 
   tags.value.push(...convertTag);
   tags.value = [...new Set(tags.value)];
