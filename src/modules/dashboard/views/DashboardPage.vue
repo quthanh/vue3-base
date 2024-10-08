@@ -66,9 +66,30 @@ watch(
     console.log(file.value);
   }
 );
+
+const inputAuto = ref();
+const suggestItems = ref([
+  "New York",
+  "Los Angeles",
+  "Chicago",
+  "Houston",
+  "Phoenix",
+]);
+const isLoadingFetch = ref(false);
+
+const onChange = (val: string) => {
+  console.log(val);
+};
 </script>
 <template>
   <div class="space-y-6">
+    <s-autocomplete
+      v-model="inputAuto"
+      :options="suggestItems"
+      :isLoading="isLoadingFetch"
+      @onChange="onChange"
+    />
+
     <s-button @click="isShowDrawer = true"> Show Drawer </s-button>
     <s-radio v-model="position" value="top"> Top </s-radio>
     <s-radio v-model="position" value="bottom"> Bottom </s-radio>
