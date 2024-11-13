@@ -3,10 +3,10 @@ const colors = require("tailwindcss/colors");
 const plugin = require("tailwindcss/plugin");
 
 const customVariants = plugin(({ addVariant, e }) => {
-  addVariant("cafe", ({ modifySelectors, separator }) => {
+  addVariant("custom-theme", ({ modifySelectors, separator }) => {
     modifySelectors(({ className }) => {
-      const element = e(`cafe${separator}${className}`);
-      return `.cafe .${element}`;
+      const element = e(`custom-theme${separator}${className}`);
+      return `.custom-theme .${element}`;
     });
   });
 });

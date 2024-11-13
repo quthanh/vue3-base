@@ -23,6 +23,7 @@ const props = withDefaults(
     disabled?: boolean;
     id?: string;
     parentClasses?: string;
+    autocomplete?: string;
   }>(),
   {
     type: "text",
@@ -70,7 +71,13 @@ const buildClasses = computed(() => {
       :placeholder="props.placeholder"
       :class="buildClasses"
       :disabled="disabled"
-      :autocomplete="type === 'password' ? 'new-password' : 'off'"
+      :autocomplete="
+        autocomplete
+          ? autocomplete
+          : type === 'password'
+          ? 'new-password'
+          : 'off'
+      "
       :id="id"
     />
     <div

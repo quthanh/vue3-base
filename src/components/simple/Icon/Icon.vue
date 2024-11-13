@@ -2,7 +2,7 @@
   <div v-html="icon"></div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect, watch } from "vue";
 
 const props = withDefaults(
   defineProps<{
@@ -48,7 +48,11 @@ const getIcon = async () => {
 
 getIcon();
 
-watchEffect(async () => {
-  getIcon();
-});
+watch(
+  () => props,
+  () => {
+    getIcon();
+  },
+  { deep: true }
+);
 </script>

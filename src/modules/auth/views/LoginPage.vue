@@ -90,6 +90,7 @@ const onSubmit = async () => {
                   v-model="form.email"
                   class="w-full"
                   placeholder="Enter email"
+                  autocomplete="email"
                 >
                 </s-input>
               </s-form-field>
@@ -110,6 +111,7 @@ const onSubmit = async () => {
                   v-model="form.password"
                   class="w-full"
                   placeholder="Enter password"
+                  autocomplete="password"
                 >
                 </s-input-password>
               </s-form-field>

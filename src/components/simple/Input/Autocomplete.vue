@@ -6,8 +6,9 @@
       @blur="handleClose"
       @focus="handleShow"
       @input="handleShow"
+      @pointerup="handleShow"
       @keyup.enter="handleShow"
-      placeholder="Search..."
+      :placeholder="placeholder"
     />
 
     <div
@@ -79,6 +80,10 @@ const props = defineProps({
     type: Boolean,
     default: true,
   },
+  placeholder: {
+    type: String,
+    default: "Search...",
+  },
 });
 
 // Two-way binding for search term
@@ -94,7 +99,7 @@ const { top: containerTop } = useElementBounding(autocompleteContainer);
 const { y: scrollY } = useWindowScroll();
 
 // Dropdown position logic: `fixed` if user scrolls past the input field
-const dropdownStyle = computed(() => {
+const dropdownStyle: { [key: string]: any } = computed(() => {
   const shouldFix = scrollY.value >= containerTop.value;
   return {
     position: shouldFix ? "fixed" : "absolute",

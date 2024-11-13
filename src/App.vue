@@ -42,7 +42,7 @@ const layoutName = computed(() => {
   <LayoutAuth v-if="!isLogged && layoutName === 'auth'" />
   <template v-else-if="isLogged">
     <LayoutProduct v-if="layoutName === 'product'" />
-    <LayoutDefault class="cafe" v-else-if="layoutName === 'default'" />
+    <LayoutDefault class="custom-theme" v-else-if="layoutName === 'default'" />
     <LayoutAuth v-else-if="layoutName === 'auth'" />
   </template>
 </template>
