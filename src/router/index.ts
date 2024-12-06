@@ -6,11 +6,10 @@ import {
   createWebHistory,
   type RouteRecordRaw,
 } from "vue-router";
-
 import { useAccountStore } from "@/stores/account";
-
 import http from "@/api/http";
 import { acceptRouteNames } from "@/utils/sidebar";
+import { useVersion } from "@/composables/useVersion";
 
 const routes = import.meta.glob("@/modules/**/route.ts", { eager: true });
 
@@ -43,6 +42,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const account = useAccountStore();
   const { userPermission } = useAccountStore();
+  const { checkVersion } = useVersion();
+
+  checkVersion();
 
   if (to.path === "/logout") account.logout();
 
@@ -57,7 +59,7 @@ router.beforeEach((to, from, next) => {
     return next("/");
   }
 
-  if (token) http.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  // if (token) http.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
   if (account.profile?.is_superadmin || ["dashboard"].includes(to.name)) {
     return next();

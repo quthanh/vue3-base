@@ -143,10 +143,19 @@ const selectPerPage = () => {
 
 <template>
   <div class="flex justify-between flex-col xl:items-center xl:flex-row">
-    <div class="text-gray-700 text-sm mb-2 xl:mb-0">
-      Show {{ totalItems ? (modelValue - 1) * perPage + 1 : 0 }}-{{
-        modelValue * perPage > totalItems ? totalItems : modelValue * perPage
-      }}/{{ totalItems }}
+    <div class="text-gray-600 text-sm mb-2 xl:mb-0">
+      Show
+      {{
+        $display.formatNumber(
+          totalItems ? (modelValue - 1) * perPage + 1 : 0,
+          0
+        )
+      }}-{{
+        $display.formatNumber(
+          modelValue * perPage > totalItems ? totalItems : modelValue * perPage,
+          0
+        )
+      }}/{{ $display.formatNumber(totalItems, 0) }}
     </div>
     <div class="flex items-center space-x-5">
       <s-select
@@ -175,7 +184,10 @@ const selectPerPage = () => {
               }"
               :disabled="modelValue === 1"
             >
-              <s-icon name="arrow-double-left"></s-icon>
+              <s-icon
+                class="w-5 h-5 text-gray-600"
+                name="arrow-double-left"
+              ></s-icon>
             </button>
           </li>
           <li>
@@ -199,7 +211,7 @@ const selectPerPage = () => {
             <button
               :disabled="isSetPageDisabled(index)"
               @click="setPage(index)"
-              class="flex items-center justify-center w-[38px] h-[38px] ml-0 border text-sm font-medium rounded-md"
+              class="flex items-center justify-center min-w-[38px] h-[38px] px-1 ml-0 border text-sm font-medium rounded-md"
               :class="{
                 'text-blue-500 bg-blue-50 border-blue-500':
                   index === modelValue,
@@ -207,7 +219,7 @@ const selectPerPage = () => {
                   index !== modelValue,
               }"
             >
-              {{ index }}
+              {{ $display.formatNumber(index, 0) }}
             </button>
           </li>
           <li>
@@ -235,7 +247,10 @@ const selectPerPage = () => {
               }"
               :disabled="modelValue === computedTotalPages"
             >
-              <s-icon class="rotate-180" name="arrow-double-left"></s-icon>
+              <s-icon
+                class="rotate-180 w-5 h-5 text-gray-600"
+                name="arrow-double-left"
+              ></s-icon>
             </button>
           </li>
         </ul>

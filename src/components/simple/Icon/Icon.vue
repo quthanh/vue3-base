@@ -2,7 +2,7 @@
   <div v-html="icon"></div>
 </template>
 <script setup lang="ts">
-import { ref, watchEffect, watch } from "vue";
+import { ref, watch } from "vue";
 
 const props = withDefaults(
   defineProps<{

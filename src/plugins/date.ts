@@ -11,9 +11,14 @@ dayjs.prototype.formatLocalDate = function () {
   return this.utc().local().format("lll");
 };
 
+dayjs.prototype.formatUTCDate = function () {
+  return this.utc().format("lll");
+};
+
 declare module "dayjs" {
   interface Dayjs {
     formatLocalDate(): string;
+    formatUTCDate(): string;
   }
 }
 

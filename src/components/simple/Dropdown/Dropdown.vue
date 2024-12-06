@@ -5,7 +5,7 @@ import {
   useElementBounding,
   useWindowSize,
 } from "@vueuse/core";
-import makeid from "@/utils/makeid";
+// import makeid from "@/utils/makeid";
 
 const { height: windowHeight } = useWindowSize();
 const emit = defineEmits(["isOpen"]);
@@ -36,7 +36,7 @@ const show = ref(false);
 const dropdown = ref(null);
 const dropdownContent = ref(null);
 const defaultSpace = ref(8);
-const randomKey = ref(makeid(8));
+// const randomKey = ref(makeid(8));
 
 onClickOutside(dropdown, () => (show.value = false));
 
@@ -103,21 +103,41 @@ const onClose = () => {
 watch(
   () => show.value,
   () => {
+    if (show.value) {
+      const {
+        x: elX,
+        y: elY,
+        width: elW,
+        height: elH,
+      } = useElementBounding(dropdown);
+      const { width: wElContent, height: hElContent } =
+        useElementBounding(dropdownContent);
+
+      x.value = elX.value;
+      y.value = elY.value;
+      width.value = elW.value;
+      height.value = elH.value;
+      widthDropdownContent.value = wElContent.value;
+      heightDropdownContent.value = hElContent.value;
+    }
+
     emit("isOpen", show.value);
-    randomKey.value = makeid(8);
+
+    // randomKey.value = makeid(8);
   }
 );
 </script>
 
 <template>
-  <div class="relative" ref="dropdown" :key="randomKey">
+  <!-- :key="randomKey" -->
+  <div class="relative" ref="dropdown">
     <div
       @click.stop="show = !show"
       class="cursor-pointer"
       :disabled="disabled"
       :class="{ 'pointer-events-none': disabled }"
     >
-      <div class="flex items-center">
+      <div class="flex items-center gap-1">
         <slot name="title"> </slot>
         <div
           v-if="showIcon"

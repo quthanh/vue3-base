@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 // import { type AuthParams, login, me } from "@/api/auth";
 import type { AxiosError } from "axios";
 import axios from "axios";
-import http from "@/api/http";
+// import http from "@/api/http";
 import router from "@/router";
 import { flatten } from "@/utils/flatten";
 import Toast from "@/components/simple/Toast";
@@ -89,7 +89,7 @@ export const useAccountStore = defineStore({
           token: data.token,
         };
 
-        http.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
+        // http.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
         await this.getProfile();
 
         router.push("/");

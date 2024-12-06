@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { storeToRefs } from "pinia";
-import { watch, computed } from "vue";
+import { watch, computed, onMounted, onUnmounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import LayoutAuth from "@/layouts/LayoutAuth.vue";
 import LayoutDefault from "@/layouts/LayoutDefault.vue";
 import LayoutProduct from "./layouts/LayoutProduct.vue";
 import { useAccountStore } from "@/stores/account";
+import { useVersion } from "@/composables/useVersion";
 
 const accountStore = useAccountStore();
 const { isLogged } = storeToRefs(accountStore);
+
+const { checkVersion } = useVersion();
+
 const router = useRouter();
 const route = useRoute();
 
@@ -35,6 +39,14 @@ hasLogin();
 
 const layoutName = computed(() => {
   return route.meta.layout;
+});
+
+onMounted(() => {
+  document.addEventListener("visibilitychange", checkVersion);
+});
+
+onUnmounted(() => {
+  document.removeEventListener("visibilitychange", checkVersion);
 });
 </script>
 

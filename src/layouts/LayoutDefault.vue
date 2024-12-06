@@ -5,6 +5,7 @@ import { useAccountStore } from "@/stores/account";
 import type { PermissionPlugin } from "@/plugins/permission";
 // import LayoutLoading from "./LayoutLoading.vue";
 // import Sidebar from "@/components/Sidebar.vue";
+import BackToTop from "@/components/BackToTop.vue";
 const Sidebar = defineAsyncComponent(() => import("@/components/Sidebar.vue"));
 const LayoutLoading = defineAsyncComponent(
   () => import("@/layouts/LayoutLoading.vue")
@@ -35,34 +36,38 @@ fetchData();
 <template>
   <LayoutLoading v-if="isLoading" />
 
-  <div class="layout-default h-screen w-full" v-else>
-    <div class="flex h-screen w-full">
-      <div
-        class="h-full"
-        :class="{
-          'w-[72px]': isSidebarCollapse,
-          'w-[280px]': !isSidebarCollapse,
-        }"
-      >
-        <Sidebar />
-      </div>
-      <div
-        id="main"
-        class="h-full overflow-y-auto overflow-x-hidden"
-        :class="{
-          'w-[calc(100%-72px)]': isSidebarCollapse,
-          'w-[calc(100%-280px)]': !isSidebarCollapse,
-        }"
-      >
-        <!-- <Topbar /> -->
+  <template v-else>
+    <div class="layout-default h-screen w-full">
+      <div class="flex h-screen w-full">
         <div
-          class="p-6 lg:py-7 lg:px-8 bg-white min-h-screen shadow-sm overflow-y-auto"
+          class="h-full"
+          :class="{
+            'w-[72px]': isSidebarCollapse,
+            'w-[280px]': !isSidebarCollapse,
+          }"
         >
-          <router-view v-slot="{ Component }">
-            <component :is="Component" class="" />
-          </router-view>
+          <Sidebar />
+        </div>
+        <div
+          id="main"
+          class="h-full overflow-y-auto overflow-x-hidden"
+          :class="{
+            'w-[calc(100%-72px)]': isSidebarCollapse,
+            'w-[calc(100%-280px)]': !isSidebarCollapse,
+          }"
+        >
+          <!-- <Topbar /> -->
+          <div
+            class="p-6 lg:py-7 lg:px-8 bg-white min-h-screen shadow-sm overflow-y-auto main-container"
+          >
+            <router-view v-slot="{ Component }">
+              <component :is="Component" class="" />
+            </router-view>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <BackToTop />
+  </template>
 </template>

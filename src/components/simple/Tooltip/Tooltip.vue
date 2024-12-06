@@ -9,20 +9,15 @@
     >
       <slot name="content"></slot>
     </div>
-
-    <div
-      @mouseenter="showTooltip"
-      @mouseleave="hideTooltip"
-      ref="tooltip"
-      :key="renderKey"
-    >
+    <!-- :key=renderKey -->
+    <div ref="tooltip" @mouseenter="showTooltip" @mouseleave="hideTooltip">
       <slot></slot>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import makeid from "@/utils/makeid";
+// import makeid from "@/utils/makeid";
 import { useElementBounding } from "@vueuse/core";
 import { ref, computed } from "vue";
 
@@ -41,7 +36,7 @@ const props = withDefaults(
 
 const tooltip = ref();
 const tooltipContent = ref();
-const renderKey = ref(makeid(8));
+// const renderKey = ref(makeid(8));
 const defaultSpace = ref(8);
 
 const { x, y, width, height } = useElementBounding(tooltip);
@@ -102,11 +97,27 @@ const tooltipStyle = computed(() => {
 });
 
 const showTooltip = () => {
+  const {
+    x: elX,
+    y: elY,
+    width: elW,
+    height: elH,
+  } = useElementBounding(tooltip);
+  const { width: wElContent, height: hElContent } =
+    useElementBounding(tooltipContent);
+
+  x.value = elX.value;
+  y.value = elY.value;
+  width.value = elW.value;
+  height.value = elH.value;
+  widthTooltipContent.value = wElContent.value;
+  heightTooltipContent.value = hElContent.value;
+
   visible.value = true;
 };
 
 const hideTooltip = () => {
   visible.value = false;
-  renderKey.value = makeid(8);
+  // renderKey.value = makeid(8);
 };
 </script>

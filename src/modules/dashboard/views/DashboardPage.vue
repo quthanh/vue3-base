@@ -68,6 +68,7 @@ watch(
 );
 
 const inputAuto = ref();
+const inputNumber = ref();
 const suggestItems = ref([
   "New York",
   "Los Angeles",
@@ -83,6 +84,7 @@ const onChange = (val: string) => {
 </script>
 <template>
   <div class="space-y-6">
+    <s-input-number v-model="inputNumber"></s-input-number>
     <s-autocomplete
       v-model="inputAuto"
       :options="suggestItems"
