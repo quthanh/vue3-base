@@ -132,7 +132,7 @@ const perPages = ref<PerPageItem[]>([
 ]);
 
 const limit = ref<PerPageItem>(
-  perPages.value.find((item) => item.limit === newPerPage.value) ||
+  perPages.value.find((item: PerPageItem) => item.limit === newPerPage.value) ||
     perPages.value[0]
 );
 
@@ -142,8 +142,8 @@ const selectPerPage = () => {
 </script>
 
 <template>
-  <div class="flex justify-between flex-col xl:items-center xl:flex-row">
-    <div class="text-gray-600 text-sm mb-2 xl:mb-0">
+  <div class="flex justify-between items-center flex-row" v-if="totalItems">
+    <div class="text-gray-600 text-sm">
       Show
       {{
         $display.formatNumber(
@@ -164,7 +164,7 @@ const selectPerPage = () => {
         name="value"
         label="name"
         :trackBy="'limit'"
-        class="!w-32"
+        class="!w-32 hidden lg:block"
         :allowEmpty="false"
         placeholder="Per page"
         @onChange="selectPerPage"
@@ -200,7 +200,10 @@ const selectPerPage = () => {
                   !isDecreaseDisabled,
               }"
             >
-              <s-icon name="down" class="rotate-90 svg-line"></s-icon>
+              <s-icon
+                name="down"
+                class="rotate-90 svg-line w-5 h-5 text-gray-600"
+              ></s-icon>
             </button>
           </li>
           <li
@@ -232,7 +235,10 @@ const selectPerPage = () => {
                   !isIncreaseDisabled,
               }"
             >
-              <s-icon name="down" class="-rotate-90 svg-line"></s-icon>
+              <s-icon
+                name="down"
+                class="-rotate-90 svg-line w-5 h-5 text-gray-600"
+              ></s-icon>
             </button>
           </li>
           <li class="hidden sm:block">

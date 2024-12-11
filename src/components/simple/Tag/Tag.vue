@@ -1,23 +1,25 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { VARIANT } from './const';
+import { computed } from "vue";
+import { VARIANT } from "./const";
 const props = withDefaults(
   defineProps<{
     variant?: string;
     href?: string;
+    size?: string;
   }>(),
   {
-    variant: 'secondary',
+    variant: "secondary",
+    size: "default",
   }
 );
-const wrapperType = computed(() => (props.href ? 'a' : 'span'));
+const wrapperType = computed(() => (props.href ? "a" : "span"));
 </script>
 <template>
   <component
     :is="wrapperType"
     :class="VARIANT[variant]"
     :href="href"
-    class="py-1 px-5 rounded flex items-center justify-center border text-xs font-medium"
+    class="flex items-center justify-center border rounded font-medium"
   >
     <slot></slot>
   </component>

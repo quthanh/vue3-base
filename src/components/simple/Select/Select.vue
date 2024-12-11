@@ -95,7 +95,7 @@ const filterOptions = computed(() => {
   }
 
   return props.options
-    .filter((option) => {
+    .filter((option: any) => {
       const newOption = isObject(props.options[0])
         ? option[props.label]
         : option;
@@ -251,7 +251,7 @@ const searchFocus = () => {
               <div>
                 {{
                   model
-                    ?.map((item) =>
+                    ?.map((item: any) =>
                       customLabel
                         ? removeHtmlTag(customLabel(item))
                         : buildOptionName(item)
@@ -389,7 +389,7 @@ const searchFocus = () => {
                     selectOption(option);
                     onClose();
                   "
-                  class="!text-green-600 svg-line w-4 h-4"
+                  class="!text-blue-600 svg-line w-4 h-4"
                   name="check-line"
                 ></s-icon>
               </div>

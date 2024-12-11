@@ -56,15 +56,14 @@ const onSubmit = async () => {
       class="flex justify-center login-bg bg-cover bg-no-repeat bg-center min-h-screen"
     >
       <div class="flex items-center w-full mx-5 my-8 justify-center">
-        <div
-          class="flex-1 max-w-[446px] bg-white p-4 lg:p-10 rounded-2xl shadow"
-        >
+        <!-- shadow -->
+        <div class="flex-1 max-w-[446px] bg-white p-4 lg:p-10 rounded-2xl">
           <div class="text-center">
             <div class="flex items-center justify-center mb-5">
               <img
                 class="w-10 max-h-[40px] lg:w-20 lg:max-h-[80px]"
                 src="@/assets/images/logo.png"
-                alt=""
+                alt="Logo"
                 loading="lazy"
               />
             </div>
@@ -140,8 +139,8 @@ const onSubmit = async () => {
 </template>
 
 <style lang="scss" scoped>
-.login-bg {
-  background: #9333ea;
-  background: linear-gradient(66deg, #9333ea 10%, #fda4af 50%, #c084fc 90%);
-}
+// .login-bg {
+//   background: #9333ea;
+//   background: linear-gradient(66deg, #9333ea 10%, #fda4af 50%, #c084fc 90%);
+// }
 </style>
