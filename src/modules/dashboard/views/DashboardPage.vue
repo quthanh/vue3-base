@@ -84,7 +84,6 @@ const onChange = (val: string) => {
 </script>
 <template>
   <div class="space-y-6">
-    <s-pagination :totalItems="10000"></s-pagination>
     <s-input-number v-model="inputNumber"></s-input-number>
     <s-autocomplete
       v-model="inputAuto"
